@@ -25,7 +25,7 @@ fun CalculatorProjectTopBar(
     TopAppBar(
         title = {
             Text(
-                text = stringResource(id = R.string.app_name),
+                text = stringResource(id = R.string.top_bar_title),
                 color = colorResource(id = R.color.top_bar_color)
             )
         },

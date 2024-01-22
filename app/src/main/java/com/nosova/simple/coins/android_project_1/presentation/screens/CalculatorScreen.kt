@@ -54,95 +54,74 @@ fun CalculateScreen(
     state: CalculatorUiState,
     scope: CoroutineScope,
     drawerState: DrawerState,
-    items: List<BkType>,
-    onItemClicked: (String) -> Unit,
     onEvent: (CalculatorUiEvent) -> Unit
 ) {
-    Scaffold(
-        topBar = {
-            CalculatorProjectTopBar(
-                scope = scope,
-                drawerState = drawerState
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(colorResource(id = R.color.light_green)),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        item {
+            Box(
+                modifier = Modifier.padding(
+                    horizontal = 50.dp,
+                    vertical = 30.dp
+                )
+            ) {
+                ItemNameText(itemName = name)
+            }
+        }
+        item {
+            CountTitleText()
+        }
+        item {
+            TextField(
+                value = state.itemsCount,
+                onValueChange = {
+                    onEvent(CalculatorUiEvent.OnItemCountChanged(it))
+                },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                modifier = Modifier.padding(top = 20.dp)
             )
         }
-    ) {
-        Box(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            NavDrawerMenuScreen(
-                drawerState = drawerState,
-                items = items,
-                onItemClicked = onItemClicked
-            )
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(it)
-                    .background(colorResource(id = R.color.light_green)),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                item {
-                    Box(
-                        modifier = Modifier.padding(
-                            horizontal = 50.dp,
-                            vertical = 30.dp
+        item {
+            ElevatedButton(
+                onClick = {
+                    onEvent(
+                        CalculatorUiEvent.OnCalculateClicked(
+                            itemCount = requireNotNull(state.itemsCount.toDouble()),
+                            name = name
                         )
-                    ) {
-                        ItemNameText(itemName = name)
-                    }
-                }
-                item {
-                    CountTitleText()
-                }
-                item {
-                    TextField(
-                        value = state.itemsCount,
-                        onValueChange = {
-                            onEvent(CalculatorUiEvent.OnItemCountChanged(it))
-                        },
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                        modifier = Modifier.padding(top = 20.dp)
                     )
-                }
-                item {
-                    ElevatedButton(
-                        onClick = {
-                            onEvent(
-                                CalculatorUiEvent.OnCalculateClicked(
-                                    itemCount = requireNotNull(state.itemsCount.toDouble()),
-                                    name = name
-                                )
-                            )
-                        },
-                        modifier = Modifier.padding(top = 20.dp),
-                        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.btn_green))
-                    ) {
-                        CalculateBtnText()
-                    }
-                }
-                item {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(
-                                horizontal = 50.dp,
-                                vertical = 20.dp
-                            )
-                            .background(colorResource(id = R.color.white_green)),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        BucketsTitleText(title = stringResource(id = R.string.buckets_title))
-                        BucketsTitleText(
-                            title = state.numberOfBoxes
-                        )
-                    }
-                }
-                itemsCountTable(
-                    carTypes = carModels,
-                    numberOfCargoSpace = state.numberOfCargoSpace
+                },
+                modifier = Modifier.padding(top = 20.dp),
+                colors = ButtonDefaults.buttonColors(colorResource(id = R.color.btn_green))
+            ) {
+                CalculateBtnText()
+            }
+        }
+        item {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = 50.dp,
+                        vertical = 20.dp
+                    )
+                    .background(colorResource(id = R.color.white_green)),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                BucketsTitleText(title = stringResource(id = R.string.buckets_title))
+                BucketsTitleText(
+                    title = state.numberOfBoxes
                 )
             }
         }
+        itemsCountTable(
+            carTypes = carModels,
+            numberOfCargoSpace = state.numberOfCargoSpace
+        )
     }
 }
 
@@ -154,8 +133,6 @@ fun CalculateScreenPreview() {
         name = "Протигази фільтруючі",
         state = CalculatorUiState(),
         scope = rememberCoroutineScope(),
-        items = listOf(),
-        onItemClicked = {},
         drawerState = DrawerState(initialValue = DrawerValue.Closed),
         onEvent = {}
     )

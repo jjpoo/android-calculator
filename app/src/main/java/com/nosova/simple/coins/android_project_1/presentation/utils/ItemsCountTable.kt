@@ -21,39 +21,33 @@ fun LazyListScope.itemsCountTable(
     carTypes: List<CarModel>,
     numberOfCargoSpace: List<Double>
 ) {
-    val carNameColumn = 0.4f
+    val carNameColumn = 0.6f
     val numberOfCargoSpaces = 0.7f
 
     val tableData = carTypes.zip(numberOfCargoSpace).toMap()
 
-//    LazyColumn(
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .padding(10.dp)
-//    ) {
-        item {
-            Row {
-                TableCell(
-                    text = stringResource(id = R.string.type_title),
-                    weight = carNameColumn
-                )
-                TableCell(
-                    text = stringResource(id = R.string.count_of_cargo_space),
-                    weight = numberOfCargoSpaces
-                )
-            }
+    item {
+        Row {
+            TableCell(
+                text = stringResource(id = R.string.type_title),
+                weight = carNameColumn
+            )
+            TableCell(
+                text = stringResource(id = R.string.count_of_cargo_space),
+                weight = numberOfCargoSpaces
+            )
         }
+    }
 
-        item {
-            tableData.forEach { (carType, cargoSpaceCount) ->
-                Row(Modifier.fillMaxWidth()) {
-                    TableCell(text = carType.model, weight = carNameColumn)
-                    TableCell(text = cargoSpaceCount.toString(), weight = numberOfCargoSpaces)
-                }
+    item {
+        tableData.forEach { (carType, cargoSpaceCount) ->
+            Row(Modifier.fillMaxWidth()) {
+                TableCell(text = carType.model, weight = carNameColumn)
+                TableCell(text = cargoSpaceCount.toString(), weight = numberOfCargoSpaces)
             }
         }
     }
-//}
+}
 
 @Composable
 fun RowScope.TableCell(
@@ -69,15 +63,5 @@ fun RowScope.TableCell(
     )
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun ItemsCountTablePreview(
-//
-//) {
-//    ItemsCountTable(
-//        carTypes = listOf(),
-//        numberOfCargoSpace = listOf()
-//    )
-//}
 
 

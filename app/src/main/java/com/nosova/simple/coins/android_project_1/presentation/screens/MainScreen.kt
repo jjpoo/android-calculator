@@ -1,76 +1,42 @@
 package com.nosova.simple.coins.android_project_1.presentation.screens
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.DrawerState
-import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.nosova.simple.coins.android_project_1.R
-import com.nosova.simple.coins.android_project_1.db.BkItem
-import com.nosova.simple.coins.android_project_1.db.BkType
-import com.nosova.simple.coins.android_project_1.presentation.theme.Androidproject1Theme
-import com.nosova.simple.coins.android_project_1.presentation.utils.CalculatorProjectTopBar
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(
-    drawerState: DrawerState,
-    scope: CoroutineScope,
-    items: List<BkType>,
-    onItemClicked: (String) -> Unit
-) {
-
-    Androidproject1Theme {
-        Scaffold(
-            topBar = {
-                CalculatorProjectTopBar(
-                    scope = scope,
-                    drawerState = drawerState
-                )
-            }
+fun MainScreen() {
+    Surface(
+        modifier = Modifier,
+        color = colorResource(id = R.color.btn_green)
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .background(colorResource(id = R.color.light_green))
         ) {
-            Surface(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(it),
-                color = colorResource(id = R.color.btn_green)
-            ) {
-                NavDrawerMenuScreen(
-                    drawerState = drawerState,
-                    items = items,
-                    onItemClicked = onItemClicked
-                )
-            }
+            Text(
+                text = "Натисніть на меню вгорі та виберіть тип БК для якого треба розрахувати місце в машині.",
+                fontSize = 25.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(horizontal = 2.dp)
+            )
         }
     }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview
-@Composable
-fun MainScreenPreview() {
-    MainScreen(
-        drawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
-        scope = rememberCoroutineScope(),
-        items = listOf(),
-        onItemClicked = {}
-    )
 }
