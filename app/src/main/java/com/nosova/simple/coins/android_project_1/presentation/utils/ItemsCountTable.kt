@@ -1,4 +1,4 @@
-package com.nosova.simple.coins.android_project_1.utils
+package com.nosova.simple.coins.android_project_1.presentation.utils
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
@@ -15,23 +15,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nosova.simple.coins.android_project_1.R
+import com.nosova.simple.coins.android_project_1.db.CarModel
 
-@Composable
-fun ItemsCountTable(
-    tableData: List<String>
+fun LazyListScope.itemsCountTable(
+    carTypes: List<CarModel>,
+    numberOfCargoSpace: List<Double>
 ) {
-    val carNameColumn = .1f
-    val numberOfCargoSpaces = .3f
+    val carNameColumn = 0.4f
+    val numberOfCargoSpaces = 0.7f
 
-    tableData.mapIndexed { index, s ->
-        index to "Items $index"
-    }
+    val tableData = carTypes.zip(numberOfCargoSpace).toMap()
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(10.dp)
-    ) {
+//    LazyColumn(
+//        modifier = Modifier
+//            .fillMaxSize()
+//            .padding(10.dp)
+//    ) {
         item {
             Row {
                 TableCell(
@@ -45,15 +44,16 @@ fun ItemsCountTable(
             }
         }
 
-        items(tableData) {
-            Row(Modifier.fillMaxWidth()) {
-
-                TableCell(text = it, weight = carNameColumn)
-                TableCell(text = it, weight = numberOfCargoSpaces)
+        item {
+            tableData.forEach { (carType, cargoSpaceCount) ->
+                Row(Modifier.fillMaxWidth()) {
+                    TableCell(text = carType.model, weight = carNameColumn)
+                    TableCell(text = cargoSpaceCount.toString(), weight = numberOfCargoSpaces)
+                }
             }
         }
     }
-}
+//}
 
 @Composable
 fun RowScope.TableCell(
@@ -69,14 +69,15 @@ fun RowScope.TableCell(
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun ItemsCountTablePreview(
-
-) {
-    ItemsCountTable(
-        tableData = listOf("sddasd", "ssdsds", "sdfsdf")
-    )
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun ItemsCountTablePreview(
+//
+//) {
+//    ItemsCountTable(
+//        carTypes = listOf(),
+//        numberOfCargoSpace = listOf()
+//    )
+//}
 
 

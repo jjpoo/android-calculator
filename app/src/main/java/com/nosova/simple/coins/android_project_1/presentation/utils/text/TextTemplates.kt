@@ -1,4 +1,4 @@
-package com.nosova.simple.coins.android_project_1.utils.text
+package com.nosova.simple.coins.android_project_1.presentation.utils.text
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth

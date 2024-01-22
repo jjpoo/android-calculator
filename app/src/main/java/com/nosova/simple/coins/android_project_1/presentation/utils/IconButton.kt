@@ -1,4 +1,4 @@
-package com.nosova.simple.coins.android_project_1.utils
+package com.nosova.simple.coins.android_project_1.presentation.utils
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.padding
