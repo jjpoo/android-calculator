@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import com.nosova.simple.coins.android_project_1.R
@@ -26,7 +27,7 @@ fun CalculatorProjectTopBar(
         title = {
             Text(
                 text = stringResource(id = R.string.top_bar_title),
-                color = colorResource(id = R.color.top_bar_color)
+                color = Color.White
             )
         },
         colors = TopAppBarDefaults.smallTopAppBarColors(
@@ -43,7 +44,7 @@ fun CalculatorProjectTopBar(
                 Icon(
                     imageVector = Icons.Default.Menu,
                     contentDescription = "Toggle drawer",
-                    tint = colorResource(id = R.color.top_bar_color)
+                    tint = Color.White
                 )
             }
         }
