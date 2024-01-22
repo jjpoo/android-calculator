@@ -78,8 +78,6 @@ fun NavigationGraph(
                                     CalculateScreen(
                                         name = nameArg.orEmpty(),
                                         state = uiState,
-                                        scope = scope,
-                                        drawerState = drawerState,
                                         onEvent = viewModel::handleUiEvent
                                     )
                                 }

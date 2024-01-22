@@ -3,6 +3,7 @@ package com.nosova.simple.coins.android_project_1.presentation.utils.text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -87,7 +88,9 @@ fun ItemNameText(
             .padding(30.dp),
         fontWeight = FontWeight.Bold,
         fontSize = 35.sp,
-        textAlign = TextAlign.Center
+        textAlign = TextAlign.Center,
+        maxLines = 5,
+        style = LocalTextStyle.current.copy(lineHeight = 40.sp)
     )
 }
 

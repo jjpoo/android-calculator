@@ -52,8 +52,6 @@ import kotlinx.coroutines.CoroutineScope
 fun CalculateScreen(
     name: String,
     state: CalculatorUiState,
-    scope: CoroutineScope,
-    drawerState: DrawerState,
     onEvent: (CalculatorUiEvent) -> Unit
 ) {
     LazyColumn(
@@ -125,15 +123,12 @@ fun CalculateScreen(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
 fun CalculateScreenPreview() {
     CalculateScreen(
         name = "Протигази фільтруючі",
         state = CalculatorUiState(),
-        scope = rememberCoroutineScope(),
-        drawerState = DrawerState(initialValue = DrawerValue.Closed),
         onEvent = {}
     )
 }
